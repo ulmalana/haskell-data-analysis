@@ -62,3 +62,22 @@ identifyInCSVFile myStringCmpFunc inFileName idColumn = do
                     identifyInCSV myStringCmpFunc (init csv) idColumn
                 )
                 records
+
+identifyInCSVFileFromColumn :: (String -> Bool)
+                            -> String 
+                            -> String
+                            -> String
+                            -> IO (Either String [(String, String, String)])
+identifyInCSVFileFromColumn 
+    myRegexFunc inFileName idColumn desiredHeading = do 
+        allFields <- identifyInCSVFile
+                        myRegexFunc inFileName idColumn
+        return $ either
+                    (Left)
+                    (\af -> Right $
+                        filter (\(_, heading, _) ->
+                            heading == desiredHeading
+                            )
+                        af
+                    )
+                    allFields                                            
