@@ -21,3 +21,12 @@ pearsonR x y = r
 
 pearsonRSqrd :: [Double] -> [Double] -> Double
 pearsonRSqrd x y = pearsonR x y ^ 2
+
+linearRegression :: [Double] -> [Double] -> (Double, Double)
+linearRegression x y = (gradient, intercept)
+  where
+    xavg = avg x
+    yavg = avg y
+    xstdev = standardDeviation x
+    gradient = covariance x y / (xstdev * xstdev)
+    intercept = yavg - gradient * xavg
