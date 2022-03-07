@@ -1,2 +1,2 @@
 # haskell-data-analysis
-Haskell Data Analysis
+Code exercise for data analysis in Haskell from Learning Haskell Data Analysis by James Church.
